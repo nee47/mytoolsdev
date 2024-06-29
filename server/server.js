@@ -7,6 +7,12 @@ import { register, login } from "./controllers/authController.js";
 import { authVerification } from "./middlewares/validateToken.js";
 import { validateSchema } from "./middlewares/validateAuth.js";
 import { authSchema } from "./models/auth.schema.js";
+import { toolSchema } from "./models/tool.schema.js";
+import {
+  createTool,
+  deleteTool,
+  getTools,
+} from "./controllers/toolsController.js";
 
 mongoConnection();
 
@@ -28,11 +34,11 @@ app.post("/api/register", validateSchema(authSchema), register);
 
 app.post("/api/login", validateSchema(authSchema), login);
 
-app.get("/api/tools", authVerification, (req, res) => {
-  res.status(200).json({
-    tools: "tool",
-  });
-});
+app.get("/api/tools", authVerification, getTools);
+
+app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
+
+app.delete("/api/tools/:id", authVerification, deleteTool);
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);

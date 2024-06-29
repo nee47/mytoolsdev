@@ -42,8 +42,7 @@ export async function register(req, res) {
 
 export async function login(req, res) {
   try {
-    const { username, email, password } = req.body;
-
+    const { email, password } = req.body;
     const userSearched = await User.findOne({ email });
 
     if (userSearched.password != password)
@@ -51,9 +50,13 @@ export async function login(req, res) {
         message: "Not valid credentials",
       });
 
-    const token = jwt.sign({ username }, process.env.SECRET_JWT_KEY, {
-      expiresIn: "2h",
-    });
+    const token = jwt.sign(
+      { id: userSearched._id },
+      process.env.SECRET_JWT_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -65,6 +68,7 @@ export async function login(req, res) {
       message: "Sucessful login",
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       message: "User not found",
     });
