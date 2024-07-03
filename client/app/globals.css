@@ -2,12 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-  font-size: 35px;
-  font-weight: 600;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 159 65% 4%;
+    --foreground: 159 10% 97.5%;
+
+    --muted: 159 50% 15%;
+    --muted-foreground: 159 10% 55%;
+
+    --popover: 159 45% 6.5%;
+    --popover-foreground: 159 10% 97.5%;
+
+    --card: 159 45% 6.5%;
+    --card-foreground: 159 10% 97.5%;
+
+    --border: 159 50% 15%;
+    --input: 159 50% 15%;
+
+    --primary: 159 100% 50%;
+    --primary-foreground: 159 10% 5%;
+
+    --secondary: 159 50% 15%;
+    --secondary-foreground: 159 10% 97.5%;
+
+    --accent: 159 50% 15%;
+    --accent-foreground: 159 10% 97.5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 159 10% 97.5%;
+
+    --ring: 159 100% 50%;
+  }
 }
 
-h2 {
-  font-size: 30px;
-  font-weight: 500;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
