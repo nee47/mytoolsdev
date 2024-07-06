@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import AvatarButton from "@/components/avatar-button";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <div className=" flex flex-col items-center">
         <h1 className="text-6xl">SATOOV</h1>
         <p className="text-xl">The simplest way to save your online tools</p>
+        <AvatarButton></AvatarButton>
       </div>
     </main>
   );

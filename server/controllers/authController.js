@@ -9,7 +9,7 @@ export async function register(req, res) {
 
     if (userAlreadyExist)
       return res.status(400).json({
-        message: "The email is already in use",
+        error: "The email is already in use",
       });
 
     const user = new User({
@@ -47,7 +47,7 @@ export async function login(req, res) {
 
     if (userSearched.password != password)
       return res.status(400).json({
-        message: "Not valid credentials",
+        error: "Not valid credentials",
       });
 
     const token = jwt.sign(
@@ -70,7 +70,19 @@ export async function login(req, res) {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      message: "User not found",
+      error: "User not found",
+    });
+  }
+}
+
+export async function logout(req, res) {
+  try {
+    res.clearCookie("token");
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      error: "Something went wrong",
     });
   }
 }
