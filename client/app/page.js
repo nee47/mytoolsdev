@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 
 async function getSessionData() {
   const token = cookies().get("token")?.value;
-  console.log(`token: ${token}`);
+  //console.log(`token: ${token}`);
   return token;
 }
 

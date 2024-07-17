@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning={true} lang="en">
-      <body className={inter.className}>
+      <body className={` ${inter.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="min-h-screen">{children}</main>
         </ThemeProvider>
       </body>
     </html>

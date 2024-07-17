@@ -2,6 +2,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,14 +27,45 @@ export default function LoginForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
     },
   });
 
-  function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  const router = useRouter();
+
+  async function onSubmit(values) {
+    const { email, password } = values;
+    const backendUrl = `http://localhost:8080/api/login`;
+
+    const toSend = {
+      email,
+      password,
+    };
+
+    try {
+      const res = await fetch(backendUrl, {
+        next: {
+          revalidate: 0,
+        },
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(toSend),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (!data.error) {
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(email, password);
   }
 
   return (

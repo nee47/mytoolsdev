@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const formSchema = z
@@ -34,14 +35,43 @@ export default function RegisterForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
-  function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  const router = useRouter();
+
+  async function onSubmit(values) {
     console.log(values);
+    const { email, password } = values;
+    const backendUrl = `http://localhost:8080/api/register`;
+
+    const toSend = {
+      email,
+      password,
+    };
+    try {
+      const res = await fetch(backendUrl, {
+        next: {
+          revalidate: 0,
+        },
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(toSend),
+      });
+      const data = await res.json();
+      if (!data.error) {
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
