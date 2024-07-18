@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { ButtonLoading } from "./ui/button-loading";
+
 import {
   Form,
   FormControl,
@@ -15,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 export default function LoginForm() {
   const formSchema = z.object({
@@ -34,7 +37,10 @@ export default function LoginForm() {
 
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
   async function onSubmit(values) {
+    setLoading(true);
     const { email, password } = values;
     const backendUrl = `http://localhost:8080/api/login`;
 
@@ -56,6 +62,7 @@ export default function LoginForm() {
         body: JSON.stringify(toSend),
       });
       const data = await res.json();
+      setLoading(false);
       console.log(data);
       if (!data.error) {
         router.push("/");
@@ -63,6 +70,7 @@ export default function LoginForm() {
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
 
     console.log(email, password);
@@ -100,7 +108,13 @@ export default function LoginForm() {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        {loading ? (
+          <ButtonLoading />
+        ) : (
+          <Button type="submit" size="lg">
+            Log in
+          </Button>
+        )}
       </form>
     </Form>
   );

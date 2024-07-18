@@ -1,14 +1,10 @@
 import { cookies } from "next/headers";
-
-async function getSessionData() {
-  const token = cookies().get("token")?.value;
-  //console.log(`token: ${token}`);
-  return token;
-}
+import Hero from "@/components/hero";
+import { getSession } from "@/lib/session";
 
 export default async function Home() {
   const authenticated = false;
-  const tok = getSessionData();
+  const token = getSession();
 
   return (
     <main className="flex min-h-screen  flex-col items-center justify-between p-12">
@@ -17,7 +13,7 @@ export default async function Home() {
         <p className="text-xl">The simplest way to save your online tools</p>
       </div>
 
-      <div></div>
+      <Hero></Hero>
     </main>
   );
 }

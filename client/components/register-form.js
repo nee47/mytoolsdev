@@ -122,7 +122,7 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Register</Button>
       </form>
     </Form>
   );
