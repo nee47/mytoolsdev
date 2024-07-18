@@ -39,6 +39,10 @@ export default function LoginForm() {
 
   const [loading, setLoading] = useState(false);
 
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   async function onSubmit(values) {
     setLoading(true);
     const { email, password } = values;
@@ -62,6 +66,9 @@ export default function LoginForm() {
         body: JSON.stringify(toSend),
       });
       const data = await res.json();
+
+      await sleep(1000);
+
       setLoading(false);
       console.log(data);
       if (!data.error) {
@@ -109,9 +116,9 @@ export default function LoginForm() {
         />
 
         {loading ? (
-          <ButtonLoading />
+          <ButtonLoading title="Loading.." className="w-32" />
         ) : (
-          <Button type="submit" size="lg">
+          <Button type="submit" className="w-32">
             Log in
           </Button>
         )}

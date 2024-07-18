@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -7,18 +9,45 @@ import {
   CardTitle,
 } from "./ui/card";
 
+import { buttonVariants } from "./ui/button";
+import { useState } from "react";
+
 export default function ItemTool(props) {
+  const [show, setShow] = useState(false);
+
   return (
-    <Card className="max-w-sm">
+    <Card className="min-w-[260px] max-w-md">
       <CardHeader>
         <CardTitle>{props.title || "Card Title"}</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        {/* <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <div>
+          <div
+            onClick={() => {
+              console.log("clicked");
+              setShow(!show);
+            }}
+            className=" cursor-pointer"
+          >
+            Description
+          </div>
+          <p className={show ? "block" : "hidden"}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus,
+            culpa porro quibusdam dolore dolores, dolorem mollitia officiis
+            iusto cum excepturi distinctio. Ullam eaque eius sapiente pariatur!
+            In laudantium iure minus.
+          </p>
+        </div>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          className={buttonVariants({ variant: "default", size: "sm" })}
+        >
+          Visit
+        </a>
       </CardFooter>
     </Card>
   );

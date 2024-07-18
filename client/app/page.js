@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import Hero from "@/components/hero";
 import { getSession } from "@/lib/session";
 

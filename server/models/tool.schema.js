@@ -1,13 +1,17 @@
 import { z } from "zod";
 
 export const toolSchema = z.object({
-  title: z.string({
-    required_error: "Title must be a string",
-  }),
+  title: z
+    .string({
+      required_error: "Title must be a string",
+    })
+    .max(20, {
+      message: "Title can't exceed 20 characters",
+    }),
   description: z.string().optional(),
   path: z
     .string({
-      required_error: "Password is required",
+      required_error: "Link is required",
     })
     .url(),
 });

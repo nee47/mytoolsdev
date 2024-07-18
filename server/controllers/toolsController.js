@@ -35,7 +35,7 @@ export async function getTools(req, res) {
     );
   } catch (error) {
     res.status(400).json({
-      error: "No tools found.",
+      error: "No tools found",
     });
   }
 }
