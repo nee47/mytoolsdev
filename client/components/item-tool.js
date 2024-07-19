@@ -23,16 +23,8 @@ export default function ItemTool(props) {
       </CardHeader>
       <CardContent>
         <div>
-          <div
-            onClick={() => {
-              console.log("clicked");
-              setShow(!show);
-            }}
-            className=" cursor-pointer"
-          >
-            Description
-          </div>
-          <p className={show ? "block" : "hidden"}>
+          <div className=" cursor-pointer">Description</div>
+          <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus,
             culpa porro quibusdam dolore dolores, dolorem mollitia officiis
             iusto cum excepturi distinctio. Ullam eaque eius sapiente pariatur!

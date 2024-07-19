@@ -32,9 +32,9 @@ export default function AvatarButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <div className="relative w-10 h-10 overflow-hidden bg-accent rounded-full ">
+        <div className="relative w-10 h-10 overflow-hidden bg-primary rounded-full ">
           <svg
-            className="absolute w-12 h-12 text-gray-400 -left-1"
+            className="absolute w-12 h-12 text-foreground -left-1"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
