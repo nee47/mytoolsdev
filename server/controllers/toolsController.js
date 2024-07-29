@@ -1,4 +1,5 @@
 import Tools from "../models/tool.model.js";
+import PublicTools from "../models/publicTool.model.js";
 
 export async function createTool(req, res) {
   try {
@@ -62,6 +63,25 @@ export async function deleteTool(req, res) {
   } catch (error) {
     return res.status(404).json({
       error: error.message,
+    });
+  }
+}
+
+export async function getPublicTools(req, res) {
+  try {
+    const tools = await PublicTools.find();
+
+    res.status(200).json(
+      tools.map((t) => ({
+        title: t.title,
+        path: t.path,
+        description: t.description,
+        style: t.style,
+      }))
+    );
+  } catch (error) {
+    res.status(400).json({
+      error: "No public tools found",
     });
   }
 }

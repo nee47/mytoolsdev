@@ -70,7 +70,7 @@ export async function login(req, res) {
   } catch (error) {
     //console.log(error);
     res.status(400).json({
-      error: "User not found",
+      error: "User not found or server error",
     });
   }
 }

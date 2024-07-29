@@ -1,8 +1,7 @@
 import Hero from "@/components/hero";
 import { getSession } from "@/lib/session";
-import CategoryBar from "@/components/category-bar";
 
-export default async function Home() {
+export default async function Home({ basicData }) {
   const authenticated = false;
   const token = getSession();
 
@@ -14,8 +13,6 @@ export default async function Home() {
           The simplest way to save and explore online tools
         </p>
       </div>
-
-      <CategoryBar />
 
       <Hero></Hero>
     </main>

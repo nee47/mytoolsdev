@@ -21,6 +21,10 @@ export default function CategoryBar(props) {
       label: "Games",
       path: "/",
     },
+    {
+      label: "AI",
+      path: "/",
+    },
   ];
 
   return (
@@ -30,8 +34,7 @@ export default function CategoryBar(props) {
           key={n.label}
           href={n.path}
           className={
-            buttonVariants({ variant: "ghost", size: "sm" }) +
-            " text-xs border border-secondary"
+            buttonVariants({ variant: "outline", size: "sm" }) + " text-xs "
           }
         >
           {n.label}

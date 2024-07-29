@@ -12,6 +12,7 @@ import {
   createTool,
   deleteTool,
   getTools,
+  getPublicTools,
 } from "./controllers/toolsController.js";
 
 mongoConnection();
@@ -48,6 +49,9 @@ app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
 app.delete("/api/tools/:id", authVerification, deleteTool);
 
 app.post("/api/logout", logout);
+
+app.get("/api/publicTools", getPublicTools);
+//app.put("/api/tools-admin", authVerification, validateSchema(toolsAdminSchema), createAdminTool);
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);

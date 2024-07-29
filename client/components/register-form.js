@@ -2,8 +2,9 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -116,7 +117,13 @@ export default function RegisterForm() {
                 <Input placeholder="password" type="password" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name.
+                Already have an account?
+                <Link
+                  className={buttonVariants({ variant: "link" })}
+                  href="/login"
+                >
+                  Log in
+                </Link>
               </FormDescription>
               <FormMessage />
             </FormItem>

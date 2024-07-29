@@ -10,33 +10,30 @@ import {
 } from "./ui/card";
 
 import { buttonVariants } from "./ui/button";
-import { useState } from "react";
+//import { useState } from "react";
 
-export default function ItemTool(props) {
-  const [show, setShow] = useState(false);
+export default function ItemTool({ props }) {
+  //const [show, setShow] = useState(false);
 
   return (
-    <Card className="min-w-[260px] max-w-md">
+    <Card className="  absolute top-0  ">
       <CardHeader>
-        <CardTitle>{props.title || "Card Title"}</CardTitle>
-        {/* <CardDescription>Card Description</CardDescription> */}
+        <CardTitle className="bg-gradient-to-r from-rose-400 via-fuchsia-400 to-indigo-500 bg-[length:100%_3px] bg-no-repeat bg-bottom leading-9">
+          {props.title || "Card Title"}
+        </CardTitle>
+        <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
-        <div>
-          <div className=" cursor-pointer">Description</div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus,
-            culpa porro quibusdam dolore dolores, dolorem mollitia officiis
-            iusto cum excepturi distinctio. Ullam eaque eius sapiente pariatur!
-            In laudantium iure minus.
-          </p>
+        <div className="">
+          <p>{props.description}</p>
         </div>
       </CardContent>
       <CardFooter>
         <a
-          href="https://www.youtube.com"
+          href={props.path}
           target="_blank"
           className={buttonVariants({ variant: "default", size: "sm" })}
+          rel="noreferrer"
         >
           Visit
         </a>

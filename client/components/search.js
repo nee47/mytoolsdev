@@ -12,6 +12,7 @@ export default function Search() {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
+        className="w-[300px] "
       ></Input>
     </div>
   );
