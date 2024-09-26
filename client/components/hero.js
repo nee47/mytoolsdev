@@ -16,9 +16,19 @@ async function getData() {
 }
 
 export default async function Hero() {
-  //console.log(await getData());
+  let data;
 
-  const data = await getData();
+  try {
+    data = await getData();
+  } catch (error) {
+    console.log(error);
+    return (
+      <div className="absolute top-[50%] text-destructive text-4xl">
+        {" "}
+        SERVER ERROR
+      </div>
+    );
+  }
 
   const styles = {
     style1: {

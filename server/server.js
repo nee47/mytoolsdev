@@ -1,9 +1,8 @@
 import "dotenv/config";
 import express from "express";
-import { mongoConnection } from "./db.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { register, login, logout } from "./controllers/authController.js";
+import { register, logout, login } from "./controllers/authControllerv2.js";
 import { authVerification } from "./middlewares/validateToken.js";
 import { validateSchema } from "./middlewares/validateAuth.js";
 import { authSchema } from "./models/auth.schema.js";
@@ -15,7 +14,7 @@ import {
   getPublicTools,
 } from "./controllers/toolsController.js";
 
-mongoConnection();
+//mongoConnection();
 
 const app = express();
 // const PORT = process.env.PORT || 8080;
@@ -42,15 +41,16 @@ app.post("/api/register", validateSchema(authSchema), register);
 
 app.post("/api/login", validateSchema(authSchema), login);
 
-app.get("/api/tools", authVerification, getTools);
+// app.get("/api/tools", authVerification, getTools);
 
-app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
+// app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
 
-app.delete("/api/tools/:id", authVerification, deleteTool);
+// app.delete("/api/tools/:id", authVerification, deleteTool);
 
 app.post("/api/logout", logout);
 
-app.get("/api/publicTools", getPublicTools);
+// app.get("/api/publicTools", getPublicTools);
+
 //app.put("/api/tools-admin", authVerification, validateSchema(toolsAdminSchema), createAdminTool);
 
 app.listen(PORT, () => {

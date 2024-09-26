@@ -69,7 +69,7 @@ export default function RegisterForm() {
       if (!data.error) {
         router.push("/");
         router.refresh();
-      }
+      } else console.log(data.error);
     } catch (error) {
       console.log(error);
     }
