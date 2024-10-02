@@ -9,7 +9,7 @@ export const toolSchema = z.object({
       message: "Title can't exceed 20 characters",
     }),
   description: z.string().optional(),
-  path: z
+  url: z
     .string({
       required_error: "Link is required",
     })

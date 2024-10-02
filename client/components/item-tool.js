@@ -16,23 +16,21 @@ export default function ItemTool({ props }) {
   //const [show, setShow] = useState(false);
 
   return (
-    <Card className="  absolute top-0  ">
+    <Card className="relative before:rounded-md before:absolute before:size-full before:bg-transparent before:shadow-lg before:shadow-primary before:animate-pulse before:z-0">
       <CardHeader>
-        <CardTitle className="bg-gradient-to-r from-rose-400 via-fuchsia-400 to-indigo-500 bg-[length:100%_3px] bg-no-repeat bg-bottom leading-9">
-          {props.title || "Card Title"}
-        </CardTitle>
+        <CardTitle className=" ">{props.title || "Card Title"}</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="">
-          <p>{props.description}</p>
-        </div>
+        <p>{props.description}</p>
       </CardContent>
       <CardFooter>
         <a
-          href={props.path}
+          href={props.url}
           target="_blank"
-          className={buttonVariants({ variant: "default", size: "sm" })}
+          className={
+            buttonVariants({ variant: "default", size: "sm" }) + " z-20"
+          }
           rel="noreferrer"
         >
           Visit

@@ -43,21 +43,21 @@ export default async function Hero() {
 
       <CategoryBar />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 my-4">
         {data.map((item) => (
           <Popover key={item.title}>
             <PopoverTrigger asChild className="relative group cursor-pointer">
               <div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
-                <div className="relative  bg-background ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                  <div className="p-4 border border-secondary rounded flex items-center cursor-pointer">
-                    <GenericTool iconProperties={styles[item.style]} />
+                <div className="absolute -inset-1 bg-gradient-to-br from-pink-600 to-primary rounded-lg blur opacity-45 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
+                <div className=" relative  bg-background  rounded-lg leading-none flex items-top justify-start space-x-6">
+                  <div className="p-4 w-full gap-4  rounded flex flex-col items-center cursor-pointer">
                     <h2>{item.title}</h2>
+                    <GenericTool iconProperties={styles[item.style]} />
                   </div>
                 </div>
               </div>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent className="p-0 border-0">
               <ItemTool props={item} />
             </PopoverContent>
           </Popover>

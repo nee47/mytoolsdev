@@ -9,10 +9,10 @@ import { authSchema } from "./models/auth.schema.js";
 import { toolSchema } from "./models/tool.schema.js";
 import {
   createTool,
-  deleteTool,
   getTools,
+  createPublicTool,
   getPublicTools,
-} from "./controllers/toolsController.js";
+} from "./controllers/toolsControllerv2.js";
 
 //mongoConnection();
 
@@ -41,15 +41,17 @@ app.post("/api/register", validateSchema(authSchema), register);
 
 app.post("/api/login", validateSchema(authSchema), login);
 
-// app.get("/api/tools", authVerification, getTools);
+app.get("/api/tools", authVerification, getTools);
 
-// app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
+app.put("/api/tools", authVerification, validateSchema(toolSchema), createTool);
 
 // app.delete("/api/tools/:id", authVerification, deleteTool);
 
 app.post("/api/logout", logout);
 
-// app.get("/api/publicTools", getPublicTools);
+app.put("/api/createPublicTool", createPublicTool);
+
+app.get("/api/publicTools", getPublicTools);
 
 //app.put("/api/tools-admin", authVerification, validateSchema(toolsAdminSchema), createAdminTool);
 

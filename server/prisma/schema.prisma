@@ -9,22 +9,40 @@ datasource db {
 }
 
 model tools {
-  id          BigInt      @id @default(autoincrement())
-  created_at  DateTime    @default(now()) @db.Timestamptz
+  id          BigInt   @id @default(autoincrement())
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
   title       String
   description String
   url         String
   owner       BigInt
-  user        users       @relation(fields: [owner], references: [id])
+  user        users    @relation(fields: [owner], references: [id])
+  style       String?
 
   @@index([owner])
 }
 
 model users {
-  id          BigInt      @id @default(autoincrement())
-  created_at  DateTime    @default(now()) @db.Timestamptz
-  user        String?
-  password    String
-  email       String
-  tools       tools[]
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  user       String?
+  password   String
+  email      String
+  tools      tools[]
+}
+
+model publicTools {
+  id          BigInt     @id @default(autoincrement())
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  title       String
+  description String
+  url         String
+  categories  category[] @relation("categoryTopublicTools")
+}
+
+model category {
+  id          BigInt        @id @default(autoincrement())
+  created_at  DateTime      @default(now()) @db.Timestamptz(6)
+  name        String        @unique
+  publicTools publicTools[] @relation("categoryTopublicTools")
+  style       String?
 }
